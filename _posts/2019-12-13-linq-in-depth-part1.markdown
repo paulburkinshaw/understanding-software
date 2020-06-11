@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "LINQ In-Depth Part 1: Common LINQ Operators"
-date:   2020-02-01 15:27:16 +0100
-categories: Programming
+title:  "LINQ In-Depth Part 1"
+date:   2019-12-13 15:27:16 +0100
+categories: [csharp, programming, dotnet]
 comments: true
 excerpt: "In part 1 of LINQ In-Depth we'll be taking a look at some of the common query operators and exploring topics such as Deferred Execution and Progressive Query Building, as well as writing queries using Fluent and Query Syntax..."
 # classes: wide
@@ -17,7 +17,7 @@ When C# 3.0 was released in 2007 it marked a big change for the language. It was
 This is the first in a series of articles where we'll be taking an in depth look at LINQ. In this post we'll be taking a look at some of the common query operators such as `Select`, `GroupBy` and `Where` and exploring topics such as *Deferred Execution* and *Progressive Query Building*, as well as writing queries using Fluent and Query Syntax. 
 
 I think one of the best ways to learn something is by actually doing it so I encourage you to open up Visual Studio (or your IDE of choice) and run the code as we go. 
-You can find the full source code for this article in the following Gist repo:
+You can find the full source code for this article in the accompanying GitHub repo [here](https://github.com/paulburkinshaw/linq-in-depth-part-1).
 
 ---
 
@@ -46,6 +46,9 @@ In this demo we'll be writing code using *local* queries (termed LINQ to Objects
 The classes and collections we'll be working with are as follows:
 
 {% highlight c# %}
+using System;
+using System.Collections.Generic;
+
 public class Product
 {
     public string Name { get; set; }
@@ -81,6 +84,7 @@ Category: <category_name>
 To achieve the above we can do the following in LINQ:  
 
 {% highlight csharp %}
+using System.Linq;
 
 // Fluent / Method syntax
 var result = products.GroupBy(p => p.Category);
@@ -465,6 +469,7 @@ We've also introduced anothe operator: `Distinct` which returns an input sequenc
 Lets have a look at the end result, to stay true to the API theme of this feature we'll serialize the resulting object into a JSON string using the `JsonSerializer` class which is part of the `System.Text.Json` namespace (.NET Core 3.0 onwards) and write it out to the console.
 
 {% highlight csharp %}
+using System.Text.Json;
 
 var json = JsonSerializer.Serialize(result, new JsonSerializerOptions() { WriteIndented = true });
 
