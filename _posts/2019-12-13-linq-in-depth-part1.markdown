@@ -110,7 +110,7 @@ This allows us to group collections of related data by specific properties and p
         <br>
         If we take a look at the contents of `result` in the VS Code Debug Console we can see this:
         <br>
-        ![Alt](/assets/images/linq_groupby_debug_1.PNG "linq_groupby_debug_1")
+        ![Alt](/assets/images/linq-in-depth-part1/linq_groupby_debug_1.PNG "linq_groupby_debug_1")
         <br>
         Where `GroupedEnumerable` is the internal concrete type `GroupBy` returns at runtime
         </P>
